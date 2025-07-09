@@ -20,7 +20,6 @@ def generate_launch_description():
     gz_launch_path = PathJoinSubstitution([pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'])
 
     pkg_share = get_package_share_directory('kitchen_bot_description')
-    # rviz_config_path = PathJoinSubstitution([pkg_share, 'rviz', 'urdf.rviz'])
     urdf_path = os.path.join(pkg_share, 'urdf', 'kitchen_bot_with_arm.urdf.xacro')
     world_path = os.path.join(pkg_share, 'world', 'kitchen_world.sdf')
     config_path = os.path.join(pkg_share, 'config', 'diffdrive_controller.yaml')
@@ -32,30 +31,6 @@ def generate_launch_description():
             'on_exit_shutdown': 'True'
         }.items(),
     )
-
-    # rviz_arguments = DeclareLaunchArgument(
-    #     name='rvizconfig',
-    #     default_value=rviz_config_path,
-    #     description='Rviz Configuration'
-    # )
-
-    # urdf_arg = DeclareLaunchArgument(
-    #     'model', default_value=urdf_path
-    # )
-
-    # gui_arg = DeclareLaunchArgument(
-    #     name='gui', default_value='true'
-    # )
-
-    # urdf = IncludeLaunchDescription(
-    #     PathJoinSubstitution([FindPackageShare('urdf_launch'), 'launch', 'display.launch.py']),
-    #     launch_arguments={
-    #         'urdf_package': 'kitchen_bot_description',
-    #         'urdf_package_path': LaunchConfiguration('model'),
-    #         'rviz_config': LaunchConfiguration('rvizconfig'),
-    #         'jsp_gui': LaunchConfiguration('gui')
-    #     }.items()
-    # )
 
     doc = xacro.process_file(urdf_path)
     robot_description_config = doc.toxml()
@@ -78,10 +53,9 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'
-            # '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-            # '/camera/image@sensor_msgs/msg/Image@gz.msgs.Image',
-            # '/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.LaserScan'
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/camera/image@sensor_msgs/msg/Image@gz.msgs.Image',
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo'
         ],
         output='screen'
     )
