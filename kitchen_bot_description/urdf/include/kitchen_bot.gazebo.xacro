@@ -19,7 +19,7 @@
     </ros2_control>
     <gazebo>
       <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>$(find kitchen_bot_description)/config/diffdrive_controller.yaml</parameters>
+        <parameters>$(find kitchen_bot_description)/config/kitchen_bot_with_arm_controller.yaml</parameters>
         <controller_manager_node_name>controller_manager</controller_manager_node_name>
       </plugin>
     </gazebo>

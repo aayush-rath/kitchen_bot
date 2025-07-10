@@ -7,17 +7,20 @@
 #include <assimp/material.h>
 #include <assimp/vector3.h>
 
+#include <ament_index_cpp/get_package_share_directory.hpp>
+
 SemanticMap semantic_map;
 
 int main(int argc, char const *argv[]) {
-    std::string world_file_path = "/home/aayush/Projects/kitchen_ws/src/kitchen_bot_description/world/kitchen_world.sdf";
+    std::string package_path = ament_index_cpp::get_package_share_directory("kitchen_bot_description");
+    std::string world_file_path = package_path + "/world/kitchen_world.sdf";
     std::unordered_map<std::string, std::vector<double>> models;
 
     read_world_file(world_file_path, models);
     Assimp::Importer importer;
 
     for (const auto& element : models) {
-        std::string model_root = "/home/aayush/Projects/kitchen_ws/src/kitchen_bot_description/models";
+        std::string model_root = package_path + "/src/kitchen_bot_description/models";
         std::string model_sdf_path = model_root + "/" + element.first + "/model.sdf";
         std::string mesh_path = get_mesh_path(model_sdf_path, model_root, element.first);
 

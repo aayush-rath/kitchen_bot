@@ -10,19 +10,22 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
+    pkg_share = get_package_share_directory('kitchen_bot_description')
+    urdf_path = os.path.join(pkg_share, 'urdf', 'kitchen_bot_with_arm.urdf.xacro')
+    world_path = os.path.join(pkg_share, 'world', 'kitchen_world.sdf')
+    config_path = os.path.join(pkg_share, 'config', 'kitchen_bot_with_arm_controller.yaml')
+
     env_var = SetEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH',
-        value='/home/aayush/Projects/kitchen_ws/install/kitchen_bot_description/share/kitchen_bot_description/models' +
+        value= os.path.join(pkg_share, 'models') + 
             os.environ.get('GZ_SIM_RESOURCE_PATH', '')
     )
 
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     gz_launch_path = PathJoinSubstitution([pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'])
 
-    pkg_share = get_package_share_directory('kitchen_bot_description')
-    urdf_path = os.path.join(pkg_share, 'urdf', 'kitchen_bot_with_arm.urdf.xacro')
-    world_path = os.path.join(pkg_share, 'world', 'kitchen_world.sdf')
-    config_path = os.path.join(pkg_share, 'config', 'diffdrive_controller.yaml')
+    doc = xacro.process_file(urdf_path)
+    robot_description_config = doc.toxml()
 
     declare_world_path = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(gz_launch_path),
@@ -31,9 +34,6 @@ def generate_launch_description():
             'on_exit_shutdown': 'True'
         }.items(),
     )
-
-    doc = xacro.process_file(urdf_path)
-    robot_description_config = doc.toxml()
 
     publish_robot_state = Node(
         package='robot_state_publisher',
@@ -46,7 +46,7 @@ def generate_launch_description():
         executable='create',
         output='screen',
         arguments=['-topic', '/robot_description', '-name',
-                   'kitchen_bot', '-allow_renaming', 'true', '-z', '1.0'],
+                   'kitchen_bot_with_arm', '-allow_renaming', 'true', '-z', '1.0'],
     )
 
     ros_gz_bridge_node = Node(
@@ -69,7 +69,14 @@ def generate_launch_description():
     diffdrive_controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['mobile_base_controller', '--param-file', config_path],
+        arguments=['kitchen_bot_controller', '--param-file', config_path],
+        parameters=[{"use_sim_time": True}],
+    )
+
+    arm_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['kitchen_arm_controller', '--param-file', config_path],
         parameters=[{"use_sim_time": True}],
     )
 
@@ -80,5 +87,6 @@ def generate_launch_description():
         gz_spawn_entity,
         ros_gz_bridge_node,
         joint_state_broadcaster_spawner,
-        diffdrive_controller_spawner
+        diffdrive_controller_spawner,
+        arm_controller_spawner
     ])

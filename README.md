@@ -19,6 +19,7 @@ Assignment for nolon.ai
 - [ ] Write the code to perform semantic segmentation 
 
 ### Path Planning
+- [ ] Learn and look into the moveit package
 - [ ] Perform Path planning on the 6 DOF Arm
 - [ ] Perform Path Planning on the AMR
 - [ ] Perform Joint path planning for both Arm and AMR
@@ -79,3 +80,6 @@ ros2 run rviz2 rviz2
 1. Most of the time went into setting up the simulation environment and resolving errors which is expected while working with ROS2 and gz
 2. Could have made the path planning module if I would have had more time along with an improved voxel grid implementation (looks very sparse now) and also incorporated semantic segmentation on rgbd camera images
 3. If all the modules would have been finished in the given time then I would have moved on to joint optimization of the path planning part
+
+## Attributions
+The kitchen_bot has been are derived from [mir_robot](https://github.com/DFKI-NI/mir_robot.git) by [Martin Günther](https://github.com/mintar) and the kitchen-arm has been derived from [xarm_ros2](https://github.com/xArm-Developer/xarm_ros2.git) by [Dwen](https://github.com/vimior), used under the BSD-3 Clause.

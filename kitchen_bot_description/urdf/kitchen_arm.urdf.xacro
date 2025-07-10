@@ -269,10 +269,10 @@
             velocity="3.14"/>
             <dynamics damping="1.0" friction="1.0"/>
         </joint>
-<!-- 
+
         <ros2_control name="kitchen_arm_controller" type="system">
             <hardware>
-            <plugin>kitchen_arm_control/MockSystem</plugin>
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>
             </hardware>
             <joint name="joint1">
                 <command_interface name="position"/>
@@ -304,6 +304,12 @@
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
             </joint>
-        </ros2_control> -->
+        </ros2_control>
+        <gazebo>
+            <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+                <parameters>$(find kitchen_bot_description)/config/kitchen_bot_with_arm_controller.yaml</parameters>
+                <controller_manager_node_name>controller_manager</controller_manager_node_name>
+            </plugin>
+        </gazebo>
     </xacro:macro>
 </robot>

@@ -31,7 +31,7 @@ add_executable(${PROJECT_NAME}_node src/${PROJECT_NAME}_node.cpp src/file_parser
 target_include_directories(${PROJECT_NAME}_node PRIVATE include/semantic_voxel_mapper ${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}_node tinyxml2::tinyxml2 ${PCL_LIBRARIES} ${ASSIMP_LIBRARIES})
 
-ament_target_dependencies(${PROJECT_NAME}_node rclcpp visualization_msgs)
+ament_target_dependencies(${PROJECT_NAME}_node rclcpp visualization_msgs ament_index_cpp)
 
 
 install(TARGETS ${PROJECT_NAME}_node DESTINATION lib/${PROJECT_NAME})
