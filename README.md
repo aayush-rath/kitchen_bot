@@ -60,17 +60,17 @@ ros2 run rviz2 rviz2
 
 ## Images
 <figure align="center">
-    <img src="images/image.png" alt="alt text" width="500">
+    <img src="images/image.png" alt="alt text" width="500" align="center">
     <figcaption align="center">3D Voxel Semantic Map</figcaption>
 </figure>
 
 <figure align="center">
-    <img src="images/2025-07-09T20:17:30.515460939.png" alt="alt text" width="500">
+    <img src="images/2025-07-09T20:17:30.515460939.png" alt="alt text" width="500" align="center">
     <figcaption  align="center">Kitchen Simulation Environment</figcaption>
 </figure>
 
 <figure align="center">
-    <img src="images/2025-07-09T20:19:36.842187033.png" alt="alt text" width="500">
+    <img src="images/2025-07-09T20:19:36.842187033.png" alt="alt text" width="500" align="center">
     <figcaption  align="center">Robot Arm on AMR</figcaption>
 </figure>
 
