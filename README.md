@@ -6,7 +6,7 @@ Assignment for nolon.ai
 ### Gazebo Simulation Setup
 - [x] Load a kitchen model in Gazebo
 - [x] Setup AMR Cad Urdf with controller
-- [ ] Setup Robotic Arm Urdf with controller
+- [x] Setup Robotic Arm Urdf with controller
 - [ ] Add camera to the robot (Last Checkpoint)
 
 ### Semantic Segmentation
@@ -19,8 +19,8 @@ Assignment for nolon.ai
 - [ ] Write the code to perform semantic segmentation 
 
 ### Path Planning
-- [ ] Learn and look into the moveit package
-- [ ] Perform Path planning on the 6 DOF Arm
+- [x] Learn and look into the moveit package
+- [x] Perform Path planning on the 6 DOF Arm
 - [ ] Perform Path Planning on the AMR
 - [ ] Perform Joint path planning for both Arm and AMR
 - [ ] Simulate the cleaning action
@@ -57,7 +57,9 @@ ros2 run semantic_voxel_mapper semantic_voxel_mapper_node
 ros2 run rviz2 rviz2
 ```
 
-5. You can view the 3D Voxel map in rviz by selecting the marker array topic
+6. You can view the 3D Voxel map in rviz by selecting the marker array topic
+
+7. To run the moveit package for put the kitchen_moveit and kitchen_moveit_config packages in a separate workspace and then run the planning module using the interactive marker in RViz
 
 ## Images
 <figure align="center">
@@ -74,6 +76,8 @@ ros2 run rviz2 rviz2
     <img src="images/2025-07-09T20:19:36.842187033.png" alt="alt text" width="500" align="center">
     <figcaption  align="center">Robot Arm on AMR</figcaption>
 </figure>
+
+![Demo](images/demo.gif)
 
 ## Reflections
 
