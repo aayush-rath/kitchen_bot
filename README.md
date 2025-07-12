@@ -59,7 +59,7 @@ ros2 run rviz2 rviz2
 
 6. You can view the 3D Voxel map in rviz by selecting the marker array topic
 
-7. To run the moveit package for put the kitchen_moveit and kitchen_moveit_config packages in a separate workspace and then run the planning module using the interactive marker in RViz
+7. To run the moveit package for put the kitchen_moveit_config packages in a separate workspace and then run the planning module using the interactive marker in RViz
 
 ## Images
 <figure align="center">
