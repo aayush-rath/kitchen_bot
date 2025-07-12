@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: kitchen_moveit
+    relative_path: urdf/kitchen_bot_with_arm.urdf.xacro
+  srdf:
+    relative_path: config/kitchen_bot_with_arm.srdf
+  package_settings:
+    author_name: Aayush Rath
+    author_email: aayushrath@outlook.com
+    generated_timestamp: 1752271057
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

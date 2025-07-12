@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="kitchen_bot_with_arm">
+
+  <xacro:include filename="$(find kitchen_moveit)/urdf/kitchen_bot.urdf.xacro" />
+  <xacro:include filename="$(find kitchen_moveit)/urdf/kitchen_arm.urdf.xacro" />
+
+  <joint name="kitchen_arm_mount_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="link_base"/>
+    <origin xyz="0.0 0.0 0.35" rpy="0 0 0"/>
+  </joint>
+
+</robot>
